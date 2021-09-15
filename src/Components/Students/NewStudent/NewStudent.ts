@@ -7,6 +7,7 @@ import { store } from "../../../Store/Store";
 import { HTMLElementEventType } from "../../../Types/Types";
 import { NewStudentCss } from "./NewStudentCss";
 
+let x={test:'test'};
 
 @customElement("new-student")
 class NewStudent extends MobxLitElement {
