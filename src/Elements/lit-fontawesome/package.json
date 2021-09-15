@@ -1,0 +1,57 @@
+{
+  "_from": "lit-fontawesome",
+  "_id": "lit-fontawesome@0.1.3",
+  "_inBundle": false,
+  "_integrity": "sha512-Ze///hwsmQZpS4KqbsjxxJXvdhlZG//2z3jNuxIcDGSagE4mtvYXYQYFdhiFudUfyP6PimWtWd+f2ERBooKSPQ==",
+  "_location": "/lit-fontawesome",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "lit-fontawesome",
+    "name": "lit-fontawesome",
+    "escapedName": "lit-fontawesome",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/lit-fontawesome/-/lit-fontawesome-0.1.3.tgz",
+  "_shasum": "34f0b3aa961b5380c5b56c53c2a232cbc9e49381",
+  "_spec": "lit-fontawesome",
+  "_where": "D:\\Emanat\\LogAnaliz\\LogAnaliz\\wwwroot\\log-analiz",
+  "author": {
+    "name": "quinszouls"
+  },
+  "bugs": {
+    "url": "https://github.com/QuinsZouls/lit-fontawesome/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "lit-element": "^2.2.1"
+  },
+  "deprecated": false,
+  "description": "Icons of Fontawesome for Polymer 3 and LitElement",
+  "devDependencies": {},
+  "homepage": "https://github.com/QuinsZouls/lit-fontawesome#readme",
+  "keywords": [
+    "Polymer",
+    "3",
+    "LitElement",
+    "FontAwesome"
+  ],
+  "license": "MIT",
+  "main": "fontawesome.js",
+  "name": "lit-fontawesome",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QuinsZouls/lit-fontawesome.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.1.3"
+}

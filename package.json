@@ -1,0 +1,30 @@
+{
+  "name": "kurs-app",
+  "description": "Webcomponent kurs-app following open-wc recommendations",
+  "license": "MIT",
+  "author": "kurs-app",
+  "version": "0.0.0",
+  "scripts": {
+    "analyze": "cem analyze --litelement",
+    "start": "tsc && concurrently -k -r \"tsc --watch --preserveWatchOutput\" \"wds\""
+  },
+  "dependencies": {
+    "@adobe/lit-mobx": "^2.0.0-rc.4",
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "@types/bootstrap": "^5.1.4",
+    "@vaadin/router": "^1.7.4",
+    "bootstrap": "^5.1.0",
+    "jquery": "^3.6.0",
+    "lit": "^2.0.0-rc.3",
+    "mobx": "^6.3.2"
+  },
+  "devDependencies": {
+    "@custom-elements-manifest/analyzer": "^0.4.17",
+    "@types/jquery": "^3.5.6",
+    "@web/dev-server": "^0.1.21",
+    "concurrently": "^5.3.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.3.5"
+  },
+  "customElements": "custom-elements.json"
+}
