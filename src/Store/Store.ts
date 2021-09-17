@@ -18,6 +18,23 @@ class Store {
     //#region Student
     public studentList: StudentListViewModel[] = [];
     public newStudent: StudentRequestModel = new StudentRequestModel();
+    public Subjects:Array<{id:number,name:string}>=[];
+    public Languages:Array<{key:string,value:string}>=[
+        {key:"Az",value:"Az"},
+        {key:"Ru",value:"Ru"},
+        {key:"Eng",value:"Eng"}
+      ];
+    public Genders=[
+        {key:"Kişi",value:"Kişi"},
+        {key:"Qadın",value:"Qadın"},
+    ];
+    public Nationalities=[
+        {key:"Azerbaycanli",value:"Azerbaycanli"},
+        {key:"Ingilis",value:"Ingilis"},
+        {key:"Alman",value:"Alman"},
+        {key:"Rus",value:"Rus"},
+        {key:"Turk",value:"Turk"},
+    ];
 
     resetNewStudent() {
         this.newStudent = new StudentRequestModel();
