@@ -16,6 +16,7 @@ class NewStudent extends MobxLitElement {
 
   render() {
     let dis = this;
+    //test
     return html`
       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
       
