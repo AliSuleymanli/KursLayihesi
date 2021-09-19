@@ -8,8 +8,11 @@ import { LoginViewModelToUserValidateRqsModelAdapter } from '../Adapters/UserAda
 import { setUserInStorage } from '../Services/LocalStorage';
 import { StudentListViewModel } from '../Models/ViewModels/StudentListViewModel';
 import { StudentRequestModel } from '../Models/RequestModels/StudentRequestModel';
+import { StudentStore } from './StudentStore';
 
 class Store {
+    public studentStore = new StudentStore(this);
+
     public User: User = new User();
     public message: { alert: string, rev: number } = { alert: "", rev: -1 };
 
@@ -18,22 +21,22 @@ class Store {
     //#region Student
     public studentList: StudentListViewModel[] = [];
     public newStudent: StudentRequestModel = new StudentRequestModel();
-    public Subjects:Array<{id:number,name:string}>=[];
-    public Languages:Array<{key:string,value:string}>=[
-        {key:"Az",value:"Az"},
-        {key:"Ru",value:"Ru"},
-        {key:"Eng",value:"Eng"}
-      ];
-    public Genders=[
-        {key:"Kişi",value:"Kişi"},
-        {key:"Qadın",value:"Qadın"},
+    public Subjects: Array<{ id: number, name: string }> = [];
+    public Languages: Array<{ key: string, value: string }> = [
+        { key: "Az", value: "Az" },
+        { key: "Ru", value: "Ru" },
+        { key: "Eng", value: "Eng" }
     ];
-    public Nationalities=[
-        {key:"Azerbaycanli",value:"Azerbaycanli"},
-        {key:"Ingilis",value:"Ingilis"},
-        {key:"Alman",value:"Alman"},
-        {key:"Rus",value:"Rus"},
-        {key:"Turk",value:"Turk"},
+    public Genders = [
+        { key: "Kişi", value: "Kişi" },
+        { key: "Qadın", value: "Qadın" },
+    ];
+    public Nationalities = [
+        { key: "Azerbaycanli", value: "Azerbaycanli" },
+        { key: "Ingilis", value: "Ingilis" },
+        { key: "Alman", value: "Alman" },
+        { key: "Rus", value: "Rus" },
+        { key: "Turk", value: "Turk" },
     ];
 
     resetNewStudent() {
@@ -87,4 +90,4 @@ autorun(() => {
     }
 });
 
-export { store };
+export { store, Store };
