@@ -11,7 +11,7 @@ import { StudentRequestModel } from '../Models/RequestModels/StudentRequestModel
 import { StudentStore } from './StudentStore';
 
 class Store {
-    public studentStore = new StudentStore(this);
+    public studentStore: StudentStore;
 
     public User: User = new User();
     public message: { alert: string, rev: number } = { alert: "", rev: -1 };
@@ -19,8 +19,7 @@ class Store {
     public userValidate: UserValidateresponseModel = new UserValidateresponseModel();
 
     //#region Student
-    public studentList: StudentListViewModel[] = [];
-    public newStudent: StudentRequestModel = new StudentRequestModel();
+
     public Subjects: Array<{ id: number, name: string }> = [];
     public Languages: Array<{ key: string, value: string }> = [
         { key: "Az", value: "Az" },
@@ -39,14 +38,13 @@ class Store {
         { key: "Turk", value: "Turk" },
     ];
 
-    resetNewStudent() {
-        this.newStudent = new StudentRequestModel();
-    }
+
     //#endregion
 
 
 
     constructor() {
+        this.studentStore = new StudentStore(this);
         makeAutoObservable(this);
         this.init();
     }

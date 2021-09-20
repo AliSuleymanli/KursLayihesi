@@ -247,7 +247,7 @@ class NewStudent extends MobxLitElement {
       let target = e.currentTarget || e.target;
       let { value, dataset } = target;
 
-      (store.newStudent[dataset.prop as keyof StudentRequestModel] as any) =
+      (store.studentStore.newStudent[dataset.prop as keyof StudentRequestModel] as any) =
         value;
     };
 

@@ -1,4 +1,5 @@
 import { StudentRequestModel } from "../Models/RequestModels/StudentRequestModel";
+import { StudentResponseModel } from "../Models/ResponseModels/Student/StudentResponseModel";
 import { StudentListViewModel } from "../Models/ViewModels/StudentListViewModel";
 
 class StudentAdapters {
@@ -25,6 +26,35 @@ class StudentAdapters {
             phoneMother: requestModel.phoneMother,
             regionName: requestModel.regionName,
             userOpen: requestModel.userOpen,
+            register: "",
+            callDate: ""
+        };
+
+        return result;
+    }
+
+    static responseToListView(responseModel: StudentResponseModel): StudentListViewModel {
+        let result: StudentListViewModel = {
+            id: responseModel.id,
+            name: responseModel.name,
+            surname: responseModel.surname,
+            birthday: responseModel.birthday,
+            nationality: responseModel.nationality,
+            specialityId: 0,
+            status: responseModel.status,
+            sector: responseModel.status,
+            fatherName: responseModel.fatherName,
+            motherName: responseModel.motherName,
+            specialityName: responseModel.specialityName,
+            subjectName: responseModel.subjectName,
+            minds: responseModel.minds,
+            mindType: responseModel.mindType,
+            phoneMain: responseModel.phoneMain,
+            phoneWhatsApp: responseModel.phoneWhatsApp,
+            phoneFather: responseModel.phoneFather,
+            phoneMother: responseModel.phoneMother,
+            regionName: responseModel.regionName,
+            userOpen: responseModel.userOpen,
             register: "",
             callDate: ""
         };

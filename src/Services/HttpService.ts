@@ -18,4 +18,20 @@ async function HttpPost<T, R>(requestModel: T, ApiEndpoint: string): Promise<R> 
     return result;
 }
 
-export { HttpPost };
+async function HttpGet<R>(ApiEndpoint: string): Promise<R> {
+    let result: Promise<any> = new Promise((resolve, reject) => { resolve(0) });
+
+    try {
+        result = await $.ajax({
+            url: constants.rootPath + ApiEndpoint,
+            method: 'get',
+            contentType: "application/json",
+        });
+    } catch (error) {
+        console.log({ error });
+    }
+
+    return result;
+}
+
+export { HttpPost, HttpGet };
