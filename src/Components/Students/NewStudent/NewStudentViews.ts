@@ -1,4 +1,6 @@
 import {html, TemplateResult} from 'lit';
+import { StudentRequestModel } from '../../../Models/RequestModels/StudentRequestModel';
+import { store } from '../../../Store/Store';
 import { NewStudent } from './NewStudent';
 
 function newStudentViews(dis: NewStudent){
@@ -22,17 +24,17 @@ function newStudentViews(dis: NewStudent){
           ${dis.elements.input("Tevellud", dis.keys.birthday, "date")}
           ${dis.elements.input("Telefon", dis.keys.phoneMain, "number")}
           ${dis.elements.input("Whatsapp", dis.keys.phoneWhatsApp, "number")}
-          ${dis.elements.select( "Kateqoriya", dis.dataConverter.subject_keyvalue())}
-          ${dis.elements.select("Sektor", dis.dataConverter.langs())}
-          ${dis.elements.select("Cins", dis.dataConverter.genders())}
+          ${dis.elements.select( "Kateqoriya",dis.keys.subjectName, dis.dataConverter.subject_keyvalue())}
+          ${dis.elements.select("Sektor", dis.keys.sector,dis.dataConverter.langs())}
+          ${dis.elements.select("Cins",dis.keys.gender, dis.dataConverter.genders())}
           ${dis.elements.input("Email", dis.keys.email)}
           ${dis.elements.textarea("Unvan",dis.keys.address)}   
-          ${dis.elements.select("Milliyeti", dis.dataConverter.nationality())}
-          ${dis.elements.select("Status", dis.dataConverter.nationality())}
+          ${dis.elements.select("Milliyeti",dis.keys.nationality, dis.dataConverter.nationality())}
+          ${dis.elements.select("Status",dis.keys.status, dis.dataConverter.statuses())}
           ${dis.elements.input("Qeydiyyat", dis.keys.register, "date")}
           ${dis.elements.input("Zeng Tarixi", dis.keys.callDate, "date")}
-          ${dis.elements.select("Bolge", dis.dataConverter.regions())}
-          ${dis.elements.select("Menbe", dis.dataConverter.sources())}
+          ${dis.elements.select("Bolge",dis.keys.regionName, dis.dataConverter.regions())}
+          ${dis.elements.select("Menbe",dis.keys.studentSource, dis.dataConverter.sources())}
           ${dis.elements.textarea("Qeyd",dis.keys.notes)}
 
           <div class="inputfield terms">
@@ -87,15 +89,16 @@ function newStudentElements(dis: NewStudent){
     </div>
   `;
 
-  my.select = (title, options: Array<{ key: string; value: string }>) => {
+  my.select = (title,prop, options: Array<{ key: string; value: string }>) => {
+    let value=store.studentStore.newStudent[prop as keyof StudentRequestModel];
     return html`
       <div class="inputfield">
         <label>${title}</label>
         <div class="custom_select">
-          <select @change="${dis.events.onSelect}">
+          <select @change="${dis.events.oInputt}" data-prop="${prop}">
             ${options.map(
               (option) =>
-                html`<option value="${option.key}">${option.value}</option>`
+                html`<option ?selected="${option.key==value}" value="${option.key}">${option.value}</option>`
             )}
           </select>
         </div>

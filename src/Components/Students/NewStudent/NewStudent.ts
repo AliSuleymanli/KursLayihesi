@@ -30,7 +30,7 @@ class NewStudent extends MobxLitElement {
 
   get events() {
     interface My {
-      onSelect: (e: Event) => void;
+      onChange: (e: Event) => void;
       onQedyEt: Function
       onSubmit?: any;
       oInputt?: any;
@@ -38,7 +38,7 @@ class NewStudent extends MobxLitElement {
 
     let my: My = {
       onQedyEt: (e: Event)=>{},
-      onSelect: (e: Event) => {}
+      onChange: (e: Event) => {}
     };
     let dis = this;
 
@@ -50,6 +50,8 @@ class NewStudent extends MobxLitElement {
       let target = e.currentTarget || e.target;
       let { value, dataset } = target;
 
+      console.log({value, dataset });
+
       (store.studentStore.newStudent[dataset.prop as keyof StudentRequestModel] as any) =
         value;
     };
@@ -57,10 +59,6 @@ class NewStudent extends MobxLitElement {
     my.onQedyEt= (e:Event)=>{
       console.log({newstu:store.studentStore.newStudent});
       //StudentController.InsertNewStudent(store.studentStore.newStudent);
-    }
-
-    my.onSelect=(e:Event)=>{
-      
     }
 
     return my;
