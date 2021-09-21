@@ -49,6 +49,16 @@ class Store {
         { key: "7", value: "Kursu Bitirdi" },
         { key: "8", value: "Passiv" },
     ];
+    public StudentSources = [
+        { key: "1", value: "Mesaj Yazib" },
+        { key: "2", value: "Nomre Qoyub" },
+        { key: "3", value: "Tovsiyye" },
+        { key: "4", value: "ZE(Buklet)" },
+        { key: "5", value: "ZE(Instagram)" },
+        { key: "6", value: "ZE(Facebook)" },
+        { key: "7", value: "ZE(Ozu)" },
+        { key: "8", value: "ZE(Radio)" },
+    ];
 
 
     //#endregion

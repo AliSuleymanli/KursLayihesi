@@ -44,81 +44,9 @@ class NewStudent extends MobxLitElement {
           ${this.elements.select("Status", this.dataConverter.nationality())}
           ${this.elements.input("Qeydiyyat", this.keys.register, "date")}
           ${this.elements.input("Zeng Tarixi", this.keys.callDate, "date")}
-
-          <div class="inputfield">
-            <label>Bolge</label>
-            <div class="custom_select">
-              <select>
-                <option value="male">28 may</option>
-                <option value="male">Masazir.r</option>
-                <option value="male">9-cu mkr</option>
-                <option value="male">Abseron.r Xirdalan seh</option>
-                <option value="male">Abseron ray.</option>
-                <option value="male">Bayi.qes</option>
-                <option value="male">Bileceri.qes</option>
-                <option value="male">Bine</option>
-                <option value="male">Bineqedi</option>
-                <option value="male">Bulbule.qes</option>
-                <option value="male">Haciqabul.ray</option>
-                <option value="male">Ieri Seher</option>
-                <option value="male">Nizami.r</option>
-                <option value="male">Nerimanov r.</option>
-                <option value="male">Nesimi.r</option>
-                <option value="male">Qaradag r.Musfiqabad.qes</option>
-                <option value="male">Sabuncu.r</option>
-                <option value="male">Sumqayit/seh</option>
-                <option value="male">Suraxani.ray</option>
-                <option value="male">Sebail</option>
-                <option value="male">Xalqlar Dostlugu</option>
-                <option value="male">Xirdalan.seh</option>
-                <option value="male">Xirdalan.seh</option>
-                <option value="male">Xetai.r</option>
-                <option value="male">Xezer.ray</option>
-                <option value="male">Xezer.ray</option>
-                <option value="male">Yasamal r.</option>
-                <option value="male">Yeni Yasamal</option>
-                <option value="male">Zabrat qes</option>
-                <option value="male">Ehmedli</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="inputfield">
-            <label>Menbe</label>
-            <div class="custom_select">
-              <select>
-                <option value="male">Mesaj Yazib</option>
-                <option value="male">Nomre Qoyub</option>
-                <option value="male">Tovsiyye</option>
-                <option value="male">ZE(Buklet)</option>
-                <option value="male">ZE(Instagram)</option>
-                <option value="male">ZE(Facebook)</option>
-                <option value="male">ZE(Mekteb)</option>
-                <option value="male">ZE(Ozu)</option>
-                <option value="male">ZE(Radio)</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="inputfield">
-            <label>Qeyd</label>
-            <input type="text" class="input" minlength="2" required />
-          </div>
-
-          <div class="inputfield">
-            <label>Fikirleri</label>
-            <input type="text" class="input" minlength="2" required />
-          </div>
-
-          <div class="inputfield">
-            <label>Movzular </label>
-            <textarea type="textarea" class="input" required></textarea>
-          </div>
-
-          <div class="inputfield">
-            <label>Daxil Olan Movzular </label>
-            <textarea type="textarea" class="input"></textarea>
-          </div>
+          ${this.elements.select("Bolge", this.dataConverter.regions())}
+          ${this.elements.select("Menbe", this.dataConverter.sources())}
+          ${this.elements.textarea("Qeyd",this.keys.notes)}
 
           <div class="inputfield terms">
             <label class="check">
@@ -233,6 +161,8 @@ class NewStudent extends MobxLitElement {
 
   get dataConverter() {
     interface My {
+      sources: () => { key: string; value: string; }[];
+      regions: () => { key: string; value: string; }[];
       statuses: () => { key: string; value: string; }[];
       nationality: any;
       genders: () => { key: string; value: string }[];
@@ -246,6 +176,8 @@ class NewStudent extends MobxLitElement {
       genders: () => [],
       nationality: () => [],
       statuses: () => [],
+      regions: () => [],
+      sources: () => [],
     };
     let dis = this;
 
@@ -267,6 +199,19 @@ class NewStudent extends MobxLitElement {
     my.nationality = () => store.Nationalities;
 
     my.statuses=()=>store.Statuses;
+
+    my.regions= ()=>{
+      let result = store.RegionStore.Regions.map((obj) => {
+        return {
+          key: obj.id.toString(),
+          value: obj.name,
+        };
+      });
+
+      return result;
+    }
+
+    my.sources=()=>store.StudentSources;
 
     return my;
   }

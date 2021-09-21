@@ -1,5 +1,6 @@
 import { Router } from "@vaadin/router";
 import "../kurs-app";
+import { store } from "../Store/Store";
 
 const routes = [
   {
@@ -28,6 +29,7 @@ const routes = [
             path:"newstudent",
             component: "new-student",
             action:async ()=>{
+              await store.RegionStore.init();
               await import('../Components/Students/NewStudent/NewStudent');
             }
           },

@@ -6,17 +6,16 @@ class RegionStore{
     public Regions: Array<{ id: number, name: string }> = [];
     store: Store;
     constructor(store: Store) {
-        this.store = store;
         makeAutoObservable(this);
-        this.init();
+        this.store = store;      
     }
 
     async LoadRegions(){
         this.Regions=await RegionsController.GetAllRegions();
     }
 
-    init(){
-        this.LoadRegions();
+    async init(){
+       await this.LoadRegions();
     }
 }
 
