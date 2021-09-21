@@ -4,7 +4,7 @@ import { NewStudent } from './NewStudent';
 function newStudentViews(dis: NewStudent){
     let my={render:()=>html``};
 
-    my.render= ()=>{
+    my.render = ()=>{
         return html`
       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
 
@@ -53,4 +53,8 @@ function newStudentViews(dis: NewStudent){
       <i class="fa fa-shopping-cart" aria-hidden="true"></i>
     `;
     }
+
+    return my;
 }
+
+export {newStudentViews}

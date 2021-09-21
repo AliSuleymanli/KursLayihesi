@@ -8,6 +8,7 @@ import { StudentStatus } from "../../../Models/ResponseModels/Student/StudentSta
 import { store } from "../../../Store/Store";
 import { HTMLElementEventType } from "../../../Types/Types";
 import { NewStudentCss } from "./NewStudentCss";
+import { newStudentViews } from "./NewStudentViews";
 
 @customElement("new-student")
 class NewStudent extends MobxLitElement {
@@ -19,54 +20,7 @@ class NewStudent extends MobxLitElement {
 
   render() {
     let dis = this;
-    //test
-    return html`
-      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-
-      <i class="fas fa-car"></i>
-
-      <div class="wrapper">
-        <div class="title">Form</div>
-        <div class="form">
-          <div class="inputfield">
-            <label>Kod</label>
-            <input type="number" class="input" readonly />
-          </div>
-          ${this.elements.input("Adınız", this.keys.name)}
-          ${this.elements.input("Soyadınız", this.keys.surname)}
-          ${this.elements.input("Tevellud", this.keys.birthday, "date")}
-          ${this.elements.input("Telefon", this.keys.phoneMain, "number")}
-          ${this.elements.input("Whatsapp", this.keys.phoneWhatsApp, "number")}
-          ${this.elements.select( "Kateqoriya", this.dataConverter.subject_keyvalue())}
-          ${this.elements.select("Sektor", this.dataConverter.langs())}
-          ${this.elements.select("Cins", this.dataConverter.genders())}
-          ${this.elements.input("Email", this.keys.email)}
-          ${this.elements.textarea("Unvan",this.keys.address)}   
-          ${this.elements.select("Milliyeti", this.dataConverter.nationality())}
-          ${this.elements.select("Status", this.dataConverter.nationality())}
-          ${this.elements.input("Qeydiyyat", this.keys.register, "date")}
-          ${this.elements.input("Zeng Tarixi", this.keys.callDate, "date")}
-          ${this.elements.select("Bolge", this.dataConverter.regions())}
-          ${this.elements.select("Menbe", this.dataConverter.sources())}
-          ${this.elements.textarea("Qeyd",this.keys.notes)}
-
-          <div class="inputfield terms">
-            <label class="check">
-              <input type="checkbox" />
-              <span class="checkmark"></span>
-            </label>
-            <p>Butun Sertlerle Raziyam</p>
-          </div>
-
-          <div style="text-align:end">
-            <button class="btn btn-secondary">Qeyd Et</button>
-          </div>
-          
-        </div>
-      </div>
-
-      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-    `;
+    return newStudentViews(dis).render();
   }
 
   get elements() {
