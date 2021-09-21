@@ -30,6 +30,8 @@ const routes = [
             component: "new-student",
             action:async ()=>{
               await store.RegionStore.init();
+              await store.StudentStausStore.init();
+              await store.StudentSourceStore.init();
               await import('../Components/Students/NewStudent/NewStudent');
             }
           },

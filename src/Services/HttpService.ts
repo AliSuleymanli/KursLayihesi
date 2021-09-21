@@ -2,7 +2,7 @@ import { constants } from "../Store/Constants";
 
 
 async function HttpPost<T, R>(requestModel: T, ApiEndpoint: string): Promise<R> {
-    let result: Promise<any> = new Promise((resolve, reject) => { resolve(0) });
+    let result: Promise<any> = new Promise((resolve, reject) => { resolve(null) });
 
     try {
         result = await $.ajax({

@@ -1,15 +1,17 @@
 import { MobxLitElement } from "@adobe/lit-mobx";
 import { LitElement, html, TemplateResult } from "lit-element";
 import { customElement, property } from "lit/decorators.js";
+import { BootstrapCssMin } from "../../../Elements/BootstrapCss";
 import { helperFunctions } from "../../../Helpers/HelperFunctions";
 import { StudentRequestModel } from "../../../Models/RequestModels/StudentRequestModel";
+import { StudentStatus } from "../../../Models/ResponseModels/Student/StudentStatuses";
 import { store } from "../../../Store/Store";
 import { HTMLElementEventType } from "../../../Types/Types";
 import { NewStudentCss } from "./NewStudentCss";
 
 @customElement("new-student")
 class NewStudent extends MobxLitElement {
-  static styles = [NewStudentCss];
+  static styles = [BootstrapCssMin,NewStudentCss];
 
   keys = helperFunctions.sameKeyValue<StudentRequestModel>(
     new StudentRequestModel()
@@ -55,24 +57,11 @@ class NewStudent extends MobxLitElement {
             </label>
             <p>Butun Sertlerle Raziyam</p>
           </div>
-          <div class="inputfield">
-            <input type="submit" value="Gonder" class="btn" />
+
+          <div style="text-align:end">
+            <button class="btn btn-secondary">Qeyd Et</button>
           </div>
-          <div class="inputfield">
-            <input type="submit" value="Yadda Saxla" class="btn" />
-          </div>
-          <div class="inputfield">
-            <input type="submit" value="Bagla" class="btn" />
-          </div>
-          <div class="inputfield">
-            <p
-              style="text-align: center; color: black; font-size: 17px; font-weight: 500; margin-left: 160px;"
-            >
-              <button class="btn" (click)="onOpenParentPage()">
-                Yeni Valideyin
-              </button>
-            </p>
-          </div>
+          
         </div>
       </div>
 
@@ -161,9 +150,10 @@ class NewStudent extends MobxLitElement {
 
   get dataConverter() {
     interface My {
-      sources: () => { key: string; value: string; }[];
+      sources: () => { key: string; value: string }[];
+      statuses: () =>  { key: string; value: string }[];
       regions: () => { key: string; value: string; }[];
-      statuses: () => { key: string; value: string; }[];
+      
       nationality: any;
       genders: () => { key: string; value: string }[];
       langs: () => Array<{ key: string; value: string }>;
@@ -198,7 +188,13 @@ class NewStudent extends MobxLitElement {
 
     my.nationality = () => store.Nationalities;
 
-    my.statuses=()=>store.Statuses;
+    my.statuses=()=>{
+      let result= store.StudentStausStore.statusList.map(status=>{
+        return {key:status.id.toString(),value:status.status};
+      });
+
+      return result;
+    }
 
     my.regions= ()=>{
       let result = store.RegionStore.Regions.map((obj) => {
@@ -211,8 +207,19 @@ class NewStudent extends MobxLitElement {
       return result;
     }
 
-    my.sources=()=>store.StudentSources;
+    my.sources=()=>{
+      let result=store.StudentSourceStore.sourceList.map(source=>{
+        return {
+          key:source.id.toString(),
+          value:source.source
+        }
+      });
+
+      return result;
+    }
 
     return my;
   }
 }
+
+export {NewStudent}

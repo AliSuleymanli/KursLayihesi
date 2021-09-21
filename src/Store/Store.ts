@@ -8,12 +8,14 @@ import { LoginViewModelToUserValidateRqsModelAdapter } from '../Adapters/UserAda
 import { setUserInStorage } from '../Services/LocalStorage';
 import { StudentListViewModel } from '../Models/ViewModels/StudentListViewModel';
 import { StudentRequestModel } from '../Models/RequestModels/StudentRequestModel';
-import { StudentStore } from './StudentStore';
+import { StudentSourceStore, StudentStatusStore, StudentStore } from './StudentStore';
 import { RegionStore } from './RegionStore';
 
 class Store {
     public studentStore: StudentStore;
     public RegionStore: RegionStore;
+    public StudentSourceStore: StudentSourceStore;
+    public StudentStausStore:StudentStatusStore;
 
     public User: User = new User();
     public message: { alert: string, rev: number } = { alert: "", rev: -1 };
@@ -39,28 +41,6 @@ class Store {
         { key: "Rus", value: "Rus" },
         { key: "Turk", value: "Turk" },
     ];
-    public Statuses = [
-        { key: "1", value: "Yeni" },
-        { key: "2", value: "Yoxlanildi" },
-        { key: "3", value: "Qebul Olundu" },
-        { key: "4", value: "Odenissiz" },
-        { key: "5", value: "Odenisli" },
-        { key: "6", value: "Dondurdu" },
-        { key: "7", value: "Kursu Bitirdi" },
-        { key: "8", value: "Passiv" },
-    ];
-    public StudentSources = [
-        { key: "1", value: "Mesaj Yazib" },
-        { key: "2", value: "Nomre Qoyub" },
-        { key: "3", value: "Tovsiyye" },
-        { key: "4", value: "ZE(Buklet)" },
-        { key: "5", value: "ZE(Instagram)" },
-        { key: "6", value: "ZE(Facebook)" },
-        { key: "7", value: "ZE(Ozu)" },
-        { key: "8", value: "ZE(Radio)" },
-    ];
-
-
     //#endregion
 
 
@@ -68,6 +48,9 @@ class Store {
     constructor() {
         this.studentStore = new StudentStore(this);
         this.RegionStore=new RegionStore(this);
+        this.StudentSourceStore=new StudentSourceStore(this);
+        this.StudentStausStore=new StudentStatusStore(this);
+
         makeAutoObservable(this);
         this.init();
     }

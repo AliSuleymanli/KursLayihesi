@@ -3,8 +3,10 @@ import { StudentAdapters } from "../Adapters/StudentAdapters";
 import { StudentController } from "../Controllers/StudentController";
 import { StudentRequestModel } from "../Models/RequestModels/StudentRequestModel";
 import { StudentResponseModel } from "../Models/ResponseModels/Student/StudentResponseModel";
+import { StudentSource } from "../Models/ResponseModels/Student/StudentSource";
+import { StudentStatus } from "../Models/ResponseModels/Student/StudentStatuses";
 import { StudentListViewModel } from "../Models/ViewModels/StudentListViewModel";
-import { HttpInsertNewStudent } from "../Services/Http/StudentHttp";
+import { HttpGetStatuses, HttpGetStudentSource, HttpInsertNewStudent } from "../Services/Http/StudentHttp";
 import { Store } from "./Store";
 
 
@@ -60,4 +62,40 @@ class StudentStore {
     }
 }
 
-export { StudentStore }
+class StudentSourceStore{
+    sourceList: StudentSource[] = [];
+
+    store: Store;
+    constructor(store: Store) {
+        this.store = store;
+        makeAutoObservable(this);
+    }
+
+    async init(){
+        this.loadSources();
+    }
+
+    async loadSources(){
+        this.sourceList= await HttpGetStudentSource();
+    }
+}
+
+class StudentStatusStore{
+    statusList: StudentStatus[] = [];
+
+    store: Store;
+    constructor(store: Store) {
+        this.store = store;
+        makeAutoObservable(this);
+    }
+
+    async init(){
+        this.loadSources();
+    }
+
+    async loadSources(){
+        this.statusList= await HttpGetStatuses();
+    }
+}
+
+export { StudentStore,StudentSourceStore,StudentStatusStore }
