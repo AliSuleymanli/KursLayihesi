@@ -80,10 +80,6 @@ class Store {
             rev: rev
         };
     }
-
-
-
-
 }
 
 const store = new Store();

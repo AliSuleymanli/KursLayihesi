@@ -40,9 +40,8 @@ class StudentStore {
         this.studentList.splice(index, 1);
     }
 
-    async getStudentList() {
+    async LoadStudentList() {
         let students = await StudentController.GetAllStudents();
-
         this.studentList = students.map(student => StudentAdapters.responseToListView(student));
     }
 

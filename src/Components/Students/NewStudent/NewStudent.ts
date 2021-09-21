@@ -1,6 +1,7 @@
 import { MobxLitElement } from "@adobe/lit-mobx";
 import { LitElement, html, TemplateResult } from "lit-element";
 import { customElement, property } from "lit/decorators.js";
+import { StudentController } from "../../../Controllers/StudentController";
 import { BootstrapCssMin } from "../../../Elements/BootstrapCss";
 import { helperFunctions } from "../../../Helpers/HelperFunctions";
 import { StudentRequestModel } from "../../../Models/RequestModels/StudentRequestModel";
@@ -8,7 +9,7 @@ import { StudentStatus } from "../../../Models/ResponseModels/Student/StudentSta
 import { store } from "../../../Store/Store";
 import { HTMLElementEventType } from "../../../Types/Types";
 import { NewStudentCss } from "./NewStudentCss";
-import { newStudentViews } from "./NewStudentViews";
+import { newStudentElements, newStudentViews } from "./NewStudentViews";
 
 @customElement("new-student")
 class NewStudent extends MobxLitElement {
@@ -24,67 +25,21 @@ class NewStudent extends MobxLitElement {
   }
 
   get elements() {
-    interface My {
-      textarea: (...n: any) => TemplateResult;
-      input: (...n: any) => TemplateResult;
-      select: (...n: any) => TemplateResult;
-    }
-
-    let my: My = {
-      input: () => html``,
-      select: () => html``,
-      textarea: () => html``,
-    };
-    let dis = this;
-
-    my.input = (title, prop, type = "text") => html`
-      <div class="inputfield">
-        <label>${title}</label>
-        <input
-          type="${type}"
-          class="input"
-          autocomplete="on"
-          minlength="3"
-          required
-          data-prop="${prop}"
-          @input="${this.events.oInputt}"
-        />
-      </div>
-    `;
-
-    my.select = (title, options: Array<{ key: string; value: string }>) => {
-      return html`
-        <div class="inputfield">
-          <label>${title}</label>
-          <div class="custom_select">
-            <select>
-              ${options.map(
-                (option) =>
-                  html`<option value="${option.key}">${option.value}</option>`
-              )}
-            </select>
-          </div>
-        </div>
-      `;
-    };
-
-    my.textarea = (title, prop) => html`
-      <div class="inputfield">
-        <label>${title} </label>
-        <textarea type="textarea" class="input" minlength="2" data-prop="${prop}" @input="${this.events.oInputt}"></textarea>
-      </div>
-    `;
-
-    return my;
+    return newStudentElements(this);
   }
 
   get events() {
     interface My {
+      onSelect: (e: Event) => void;
+      onQedyEt: Function
       onSubmit?: any;
       oInputt?: any;
     }
 
-    let my: My = {};
+    let my: My = {
+      onQedyEt: (e: Event)=>{},
+      onSelect: (e: Event) => {}
+    };
     let dis = this;
 
     my.oInputt = (
@@ -98,6 +53,15 @@ class NewStudent extends MobxLitElement {
       (store.studentStore.newStudent[dataset.prop as keyof StudentRequestModel] as any) =
         value;
     };
+
+    my.onQedyEt= (e:Event)=>{
+      console.log({newstu:store.studentStore.newStudent});
+      //StudentController.InsertNewStudent(store.studentStore.newStudent);
+    }
+
+    my.onSelect=(e:Event)=>{
+      
+    }
 
     return my;
   }

@@ -1,4 +1,4 @@
-import {html} from 'lit';
+import {html, TemplateResult} from 'lit';
 import { NewStudent } from './NewStudent';
 
 function newStudentViews(dis: NewStudent){
@@ -44,7 +44,7 @@ function newStudentViews(dis: NewStudent){
           </div>
 
           <div style="text-align:end">
-            <button class="btn btn-secondary">Qeyd Et</button>
+            <button class="btn btn-secondary" @click="${dis.events.onQedyEt}">Qeyd Et</button>
           </div>
           
         </div>
@@ -57,4 +57,60 @@ function newStudentViews(dis: NewStudent){
     return my;
 }
 
-export {newStudentViews}
+function newStudentElements(dis: NewStudent){
+  
+  interface My {
+    textarea: (...n: any) => TemplateResult;
+    input: (...n: any) => TemplateResult;
+    select: (...n: any) => TemplateResult;
+  }
+
+  let my: My = {
+    input: () => html``,
+    select: () => html``,
+    textarea: () => html``,
+  };
+
+
+  my.input = (title, prop, type = "text") => html`
+    <div class="inputfield">
+      <label>${title}</label>
+      <input
+        type="${type}"
+        class="input"
+        autocomplete="on"
+        minlength="3"
+        required
+        data-prop="${prop}"
+        @input="${dis.events.oInputt}"
+      />
+    </div>
+  `;
+
+  my.select = (title, options: Array<{ key: string; value: string }>) => {
+    return html`
+      <div class="inputfield">
+        <label>${title}</label>
+        <div class="custom_select">
+          <select @change="${dis.events.onSelect}">
+            ${options.map(
+              (option) =>
+                html`<option value="${option.key}">${option.value}</option>`
+            )}
+          </select>
+        </div>
+      </div>
+    `;
+  };
+
+  my.textarea = (title, prop) => html`
+    <div class="inputfield">
+      <label>${title} </label>
+      <textarea type="textarea" class="input" minlength="2" data-prop="${prop}" @input="${dis.events.oInputt}"></textarea>
+    </div>
+  `;
+
+  return my;
+}
+
+export {newStudentViews,newStudentElements}
