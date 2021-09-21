@@ -41,32 +41,9 @@ class NewStudent extends MobxLitElement {
           ${this.elements.input("Email", this.keys.email)}
           ${this.elements.textarea("Unvan",this.keys.address)}   
           ${this.elements.select("Milliyeti", this.dataConverter.nationality())}
-
-          <div class="inputfield">
-            <label>Status</label>
-            <div class="custom_select">
-              <select>
-                <option value="male">Yeni</option>
-                <option value="male">Yoxlanildi</option>
-                <option value="male">Qebul Olundu</option>
-                <option value="male">Odenissiz</option>
-                <option value="male">Odenisli</option>
-                <option value="male">Dondurdu</option>
-                <option value="male">Kursu Bitirdi</option>
-                <option value="male">Passiv</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="inputfield">
-            <label>Qeydiyyat</label>
-            <input type="date" class="input" minlength="5" required />
-          </div>
-
-          <div class="inputfield">
-            <label>Zeng Tarixi</label>
-            <input type="date" class="input" />
-          </div>
+          ${this.elements.select("Status", this.dataConverter.nationality())}
+          ${this.elements.input("Qeydiyyat", this.keys.register, "date")}
+          ${this.elements.input("Zeng Tarixi", this.keys.callDate, "date")}
 
           <div class="inputfield">
             <label>Bolge</label>
@@ -256,6 +233,7 @@ class NewStudent extends MobxLitElement {
 
   get dataConverter() {
     interface My {
+      statuses: () => { key: string; value: string; }[];
       nationality: any;
       genders: () => { key: string; value: string }[];
       langs: () => Array<{ key: string; value: string }>;
@@ -267,6 +245,7 @@ class NewStudent extends MobxLitElement {
       langs: () => [],
       genders: () => [],
       nationality: () => [],
+      statuses: () => [],
     };
     let dis = this;
 
@@ -286,6 +265,8 @@ class NewStudent extends MobxLitElement {
     my.genders = () => store.Genders;
 
     my.nationality = () => store.Nationalities;
+
+    my.statuses=()=>store.Statuses;
 
     return my;
   }

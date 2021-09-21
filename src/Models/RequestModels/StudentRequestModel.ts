@@ -1,3 +1,5 @@
+import { helperFunctions } from "../../Helpers/HelperFunctions";
+import { enums } from "../../Store/Constants";
 
 export class StudentRequestModel {
 
@@ -22,6 +24,8 @@ export class StudentRequestModel {
         phoneMother: string = "";
         phoneWhatsApp: string = "";
         regionName: string = "";
+        register:string=helperFunctions.today(enums.dateformat.server);
+        callDate :string=helperFunctions.today(enums.dateformat.server);
         schoolId: number = 0;
         sector: string = "";
         specialityName: string = "";

@@ -1,3 +1,4 @@
+import { enums } from "../Store/Constants";
 
 
 interface StringKeyObject {
@@ -44,6 +45,16 @@ class helperFunctions {
 
     static activator<T>(type: { new (): T }): T {
         return new type();
+    }
+
+    static today(format:string){
+        let day=new Date();
+        if(format==enums.dateformat.server){
+            return `${day.getFullYear}-${day.getMonth}-${day.getDay}`
+        }else{
+            return `${day.getDay}.${day.getMonth}.${day.getFullYear}`;
+        }
+            
     }
 }
 

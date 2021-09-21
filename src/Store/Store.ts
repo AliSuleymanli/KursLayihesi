@@ -9,16 +9,18 @@ import { setUserInStorage } from '../Services/LocalStorage';
 import { StudentListViewModel } from '../Models/ViewModels/StudentListViewModel';
 import { StudentRequestModel } from '../Models/RequestModels/StudentRequestModel';
 import { StudentStore } from './StudentStore';
+import { RegionStore } from './RegionStore';
 
 class Store {
     public studentStore: StudentStore;
+    public RegionStore: RegionStore;
 
     public User: User = new User();
     public message: { alert: string, rev: number } = { alert: "", rev: -1 };
 
     public userValidate: UserValidateresponseModel = new UserValidateresponseModel();
 
-    //#region Student
+    //#region const values
 
     public Subjects: Array<{ id: number, name: string }> = [];
     public Languages: Array<{ key: string, value: string }> = [
@@ -37,6 +39,16 @@ class Store {
         { key: "Rus", value: "Rus" },
         { key: "Turk", value: "Turk" },
     ];
+    public Statuses = [
+        { key: "1", value: "Yeni" },
+        { key: "2", value: "Yoxlanildi" },
+        { key: "3", value: "Qebul Olundu" },
+        { key: "4", value: "Odenissiz" },
+        { key: "5", value: "Odenisli" },
+        { key: "6", value: "Dondurdu" },
+        { key: "7", value: "Kursu Bitirdi" },
+        { key: "8", value: "Passiv" },
+    ];
 
 
     //#endregion
@@ -45,6 +57,7 @@ class Store {
 
     constructor() {
         this.studentStore = new StudentStore(this);
+        this.RegionStore=new RegionStore(this);
         makeAutoObservable(this);
         this.init();
     }
