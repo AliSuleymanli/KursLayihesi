@@ -78,6 +78,7 @@ function newStudentElements(dis: NewStudent){
     <div class="inputfield">
       <label>${title}</label>
       <input
+        .value="${store.studentStore.newStudent[prop as keyof StudentRequestModel] as string}"
         type="${type}"
         class="input"
         autocomplete="on"
@@ -109,7 +110,14 @@ function newStudentElements(dis: NewStudent){
   my.textarea = (title, prop) => html`
     <div class="inputfield">
       <label>${title} </label>
-      <textarea type="textarea" class="input" minlength="2" data-prop="${prop}" @input="${dis.events.oInputt}"></textarea>
+      <textarea 
+        type="textarea" 
+        class="input" 
+        minlength="2" 
+        data-prop="${prop}" 
+        @input="${dis.events.oInputt}"
+        .value="${store.studentStore.newStudent[prop as keyof StudentRequestModel] as string}"
+        ></textarea>
     </div>
   `;
 

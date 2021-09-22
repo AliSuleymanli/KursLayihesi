@@ -15,7 +15,7 @@ export class StudentRequestModel {
         mindType: string = "";
         minds: string = "";
         motherName: string = "";
-        name: string = "";
+        name: string = "test";
         nationality: string = "";
         notes: string = "";
         phoneExtra: string = "";
@@ -27,7 +27,7 @@ export class StudentRequestModel {
         register:string=helperFunctions.today(enums.dateformat.server);
         callDate :string=helperFunctions.today(enums.dateformat.server);
         schoolId: number = 0;
-        sector: string = "";
+        sector: string = "Ru";
         specialityName: string = "";
         status: string = "";
         studentCode: number = 0;
