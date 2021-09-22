@@ -2,6 +2,7 @@ import {html, TemplateResult} from 'lit';
 import { StudentRequestModel } from '../../../Models/RequestModels/StudentRequestModel';
 import { store } from '../../../Store/Store';
 import { NewStudent } from './NewStudent';
+import { newstudentiustore } from './NewStudentUIStore';
 
 function newStudentViews(dis: NewStudent){
     let my={render:()=>html``};
@@ -13,7 +14,6 @@ function newStudentViews(dis: NewStudent){
       <i class="fas fa-car"></i>
 
       <div class="wrapper">
-        <div class="title">Form</div>
         <div class="form">
           <div class="inputfield">
             <label>Kod</label>
@@ -46,7 +46,7 @@ function newStudentViews(dis: NewStudent){
           </div>
 
           <div style="text-align:end">
-            <button class="btn btn-secondary" @click="${dis.events.onQedyEt}">Qeyd Et</button>
+            <button ?disabled="${newstudentiustore.saveButtondisabled}" class="btn btn-secondary" @click="${dis.events.onQedyEt}">Qeyd Et</button>
           </div>
           
         </div>

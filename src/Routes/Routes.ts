@@ -33,6 +33,7 @@ const routes = [
               await store.StudentStausStore.init();
               await store.StudentSourceStore.init();
               await import('../Components/Students/NewStudent/NewStudent');
+              store.studentStore.resetNewStudent();
             }
           },
           {

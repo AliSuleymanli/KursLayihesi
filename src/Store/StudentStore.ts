@@ -1,5 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { StudentAdapters } from "../Adapters/StudentAdapters";
+import { newstudentiustore } from "../Components/Students/NewStudent/NewStudentUIStore";
 import { StudentController } from "../Controllers/StudentController";
 import { StudentRequestModel } from "../Models/RequestModels/StudentRequestModel";
 import { StudentResponseModel } from "../Models/ResponseModels/Student/StudentResponseModel";
@@ -51,13 +52,20 @@ class StudentStore {
 
     onStudentChangedOnServer(student: StudentRequestModel) {
 
-        let studentViewModel = StudentAdapters.requestToListViewModel(student);
+        let message:string="Deyisiklik Qeyd Olundu";
 
-        this.resetNewStudent();
+        if(student.id==0){
+            message="Deyisiklikler qeyd oluna bilmedi. tekrar yoxlayin.";
+        }else{
+            let studentViewModel = StudentAdapters.requestToListViewModel(student);
 
-        this.addNewStudent(studentViewModel);
+            this.resetNewStudent();
+    
+            this.addNewStudent(studentViewModel); 
+        }  
 
-        this.store.setMessage("Deyisiklik Qeyd Olundu");
+        this.store.setMessage(message);
+        newstudentiustore.saveButtondisabled=false;
     }
 }
 

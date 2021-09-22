@@ -9,6 +9,7 @@ import { StudentStatus } from "../../../Models/ResponseModels/Student/StudentSta
 import { store } from "../../../Store/Store";
 import { HTMLElementEventType } from "../../../Types/Types";
 import { NewStudentCss } from "./NewStudentCss";
+import { newstudentiustore } from "./NewStudentUIStore";
 import { newStudentElements, newStudentViews } from "./NewStudentViews";
 
 @customElement("new-student")
@@ -57,8 +58,9 @@ class NewStudent extends MobxLitElement {
     };
 
     my.onQedyEt= (e:Event)=>{
+      newstudentiustore.saveButtondisabled=true;
       console.log({newstu:store.studentStore.newStudent});
-      //StudentController.InsertNewStudent(store.studentStore.newStudent);
+      StudentController.InsertNewStudent(store.studentStore.newStudent);
     }
 
     return my;
