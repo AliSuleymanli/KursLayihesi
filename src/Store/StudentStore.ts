@@ -42,7 +42,11 @@ class StudentStore {
     }
 
     async LoadStudentList() {
-        let students = await StudentController.GetAllStudents();
+        let response = await StudentController.GetAllStudents();
+        let students=await response.result;
+
+        if(response.responseInfo.success==false) students=[];
+        
         this.studentList = students.map(student => StudentAdapters.responseToListView(student));
     }
 
@@ -55,7 +59,7 @@ class StudentStore {
         let message:string="Deyisiklik Qeyd Olundu";
 
         if(student.id==0){
-            message="Deyisiklikler qeyd oluna bilmedi. tekrar yoxlayin.";
+           // message="Deyisiklikler qeyd oluna bilmedi. tekrar yoxlayin.";
         }else{
             let studentViewModel = StudentAdapters.requestToListViewModel(student);
 
@@ -83,7 +87,8 @@ class StudentSourceStore{
     }
 
     async loadSources(){
-        this.sourceList= await HttpGetStudentSource();
+        let response=await HttpGetStudentSource();
+        this.sourceList=await response.result;
     }
 }
 
@@ -97,11 +102,12 @@ class StudentStatusStore{
     }
 
     async init(){
-        this.loadSources();
+        this.loadStatuses();
     }
 
-    async loadSources(){
-        this.statusList= await HttpGetStatuses();
+    async loadStatuses(){
+        let response=await StudentController.GetAllStatuses();
+        this.statusList= await response.result; 
     }
 }
 

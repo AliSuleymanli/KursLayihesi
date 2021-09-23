@@ -46,10 +46,7 @@ class NewStudent extends MobxLitElement {
       let target = e.currentTarget || e.target;
       let { value, dataset } = target;
 
-      console.log({value, dataset });
-
-      (store.studentStore.newStudent[dataset.prop as keyof StudentRequestModel] as any) =
-        value;
+      (store.studentStore.newStudent[dataset.prop as keyof StudentRequestModel] as any) = value;
     };
 
     my.onQedyEt= (e:Event)=>{
