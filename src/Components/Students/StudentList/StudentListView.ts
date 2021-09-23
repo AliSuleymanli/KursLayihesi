@@ -1,4 +1,5 @@
 import { html } from "lit";
+import { editbutton } from "../../../Elements/EditButton";
 import { StudentList } from "./StudentList";
 
 function StudentListView(dis:StudentList){
@@ -40,7 +41,7 @@ function StudentListView(dis:StudentList){
                     <td>${student.sector}</td>
                     <td>${student.status}</td>
                     <td>${student.register}</td>
-                    <td>${student.regionName} <span class="Edit">E</span></td>
+                    <td>${student.regionName} ${editbutton(dis.events.onToEdit,student)}</td>
                 </tr>
             `)}
         `;
