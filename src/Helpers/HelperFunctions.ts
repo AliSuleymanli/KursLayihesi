@@ -53,7 +53,7 @@ class helperFunctions {
         let month=day.getMonth()%12 + 1;
         let monthAsString= month<10?`0${month}`:month+'';
 
-        let result=`${day.getDate()}.${monthAsString}.${day.getFullYear()}`;  
+        let result=`${day.getDate()}.${monthAsString}.${day.getFullYear()}`;
        
         if(format==enums.dateformat.server){ 
             result= `${day.getFullYear()}-${monthAsString}-${day.getDate()}`
