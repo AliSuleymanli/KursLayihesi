@@ -26,6 +26,7 @@ export class StudentRequestModel {
         regionName: string = "";
         register:string=helperFunctions.today(enums.dateformat.server);
         callDate :string=helperFunctions.today(enums.dateformat.server);
+        updateDate :string=helperFunctions.today(enums.dateformat.server);
         schoolId: number = 0;
         sector: string = "Ru";
         specialityName: string = "";

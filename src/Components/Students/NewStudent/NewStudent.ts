@@ -20,14 +20,9 @@ class NewStudent extends MobxLitElement {
     new StudentRequestModel()
   );
 
-  render() {
-    let dis = this;
-    return newStudentViews(dis).render();
-  }
+  render() { return newStudentViews(this).render(); }
 
-  get elements() {
-    return newStudentElements(this);
-  }
+  get elements() { return newStudentElements(this); }
 
   get events() {
     interface My {

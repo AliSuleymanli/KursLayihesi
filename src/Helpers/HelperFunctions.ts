@@ -49,12 +49,17 @@ class helperFunctions {
 
     static today(format:string){
         let day=new Date();
-        if(format==enums.dateformat.server){
-            return `${day.getFullYear}-${day.getMonth}-${day.getDay}`
-        }else{
-            return `${day.getDay}.${day.getMonth}.${day.getFullYear}`;
+
+        let month=day.getMonth()%12 + 1;
+        let monthAsString= month<10?`0${month}`:month+'';
+
+        let result=`${day.getDate()}.${monthAsString}.${day.getFullYear()}`;  
+       
+        if(format==enums.dateformat.server){ 
+            result= `${day.getFullYear()}-${monthAsString}-${day.getDate()}`
         }
-            
+ 
+        return result;  
     }
 }
 
