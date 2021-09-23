@@ -67,6 +67,7 @@ class Store {
         if (this.userValidate.validated == true) {
             this.User.username = viewModel.username;
             this.User.password = viewModel.password;
+            this.message.rev=0;
         } else {
             this.setMessage("istifadeci adi yaxud sifre sehfdir. tekrar yoxlayin.");
         }

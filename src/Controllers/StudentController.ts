@@ -9,9 +9,14 @@ import { StudentAdapters } from "../Adapters/StudentAdapters";
 
 class StudentController {
     static async InsertNewStudent(student: StudentRequestModel) {
-        let id = await HttpInsertNewStudent(student);
-        student.id = id;
+        let response = await HttpInsertNewStudent(student);
 
+        if(response.responseInfo.success==false){
+            store.setMessage(response.responseInfo.message);
+            return;
+        }
+        
+        student.id =await response.result;
         store.studentStore.onStudentChangedOnServer(student);
     }
 
