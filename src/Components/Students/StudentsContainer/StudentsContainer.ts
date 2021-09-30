@@ -5,6 +5,8 @@ import { StudentsContainerCss } from "./StudentsContainerCss.js";
 import { BootstrapCssMin } from "../../../Elements/BootstrapCss.js";
 import 'jquery';
 import 'bootstrap';
+import { HTMLElementEventType } from "../../../Types/Types.js";
+import { store } from "../../../Store/Store.js";
 
 @customElement("students-container")
 class StudentsContainer extends LitElement{
@@ -35,10 +37,9 @@ class StudentsContainer extends LitElement{
         return href==this.pathname?"active":"";
     }
 
-    changeLocationPathName(){
-        setTimeout(()=>{
-            this.pathname=location.pathname;
-        },30)
-        
+    changeLocationPathName(e:HTMLElementEventType<HTMLAnchorElement>){
+        let target=e.currentTarget||e.target;
+        let {origin,href}=target;
+        this.pathname=href.substring(origin.length);
     }
 }

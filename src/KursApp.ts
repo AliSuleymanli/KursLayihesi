@@ -8,6 +8,7 @@ import { getUserFromStorage } from './Services/LocalStorage.js';
 import { UserToUserValidateRqsModelAdapter } from './Adapters/UserAdapters.js';
 import { MobxLitElement } from '@adobe/lit-mobx';
 import { store} from './Store/Store';
+import { PreventAndRedirectCommands, Router, RouterLocation } from '@vaadin/router';
 
 $.ajaxSetup({
   headers: {
@@ -69,6 +70,7 @@ export class KursApp extends MobxLitElement {
     let dis=this;
     
     return html`
+
     ${store.userValidate.validated==true
     ?html`    
       <app-menu>
@@ -94,4 +96,5 @@ export class KursApp extends MobxLitElement {
 
     return my;
   }
+
 }
