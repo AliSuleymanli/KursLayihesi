@@ -9,11 +9,11 @@ import { StudentStatus } from '../../Models/ResponseModels/Student/StudentStatus
 import { StudentSource } from '../../Models/ResponseModels/Student/StudentSource';
 
 async function HttpInsertNewStudent(requestModel: StudentRequestModel){
-    return await HttpPost<StudentRequestModel, number>(requestModel, ApiEndpoints.students);
+    return await HttpPost<StudentRequestModel, number>(requestModel, ApiEndpoints.UpdateStudents);
 }
 
 async function HttpGetStudents() {
-    return await HttpGet<StudentResponseModel[]>(ApiEndpoints.students);
+    return await HttpGet<StudentResponseModel[]>(ApiEndpoints.getStudents);
 }
 
 async function HttpGetStatuses() {

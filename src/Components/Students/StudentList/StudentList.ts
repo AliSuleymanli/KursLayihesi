@@ -11,13 +11,11 @@ import { StudentListView } from "./StudentListView";
 
 @customElement("student-list")
 class StudentList extends LitElement {
-  static styles=[BootstrapCssMin,StudentListCss]
+  static styles=[BootstrapCssMin,StudentListCss];
 
-  render(){
-    return html`
-      
-    `;
-  }
+  
+
+  render(){ return this.views.render(); }
 
   get views(){ return StudentListView(this); }
 
@@ -57,5 +55,6 @@ class StudentList extends LitElement {
     return my;
   }  
 }
+
 
 export {StudentList};

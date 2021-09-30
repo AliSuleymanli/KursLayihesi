@@ -23,6 +23,7 @@ const routes = [
             component: "student-list",
             action:async ()=>{
               await import('../Components/Students/StudentList/StudentList');
+              await store.studentStore.LoadStudentList();
             }
           },
           {

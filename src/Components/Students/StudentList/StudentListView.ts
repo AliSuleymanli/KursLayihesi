@@ -10,8 +10,27 @@ function StudentListView(dis:StudentList){
 
     my.render=()=>{
         return html`
+        <style>
+            .edit-parent .edit-button{
+                display:none;
+            }
+
+            .edit-parent:hover .edit-button{
+                display:block;
+            }
+
+            .edit-button{
+                position:relative;
+            }
+
+            .edit-parent .edit-button{
+                position:absolute;
+                right:0;
+            }
+        </style>
+
             <div class="table-responsive">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered ">
                     <thead>
                         <tr>
                             <th>Ad Soyad</th>
@@ -41,7 +60,7 @@ function StudentListView(dis:StudentList){
                     <td>${student.sector}</td>
                     <td>${student.status}</td>
                     <td>${student.register}</td>
-                    <td>${student.regionName} ${editbutton(dis.events.onToEdit,student)}</td>
+                    <td><div class="edit-parent"> ${student.regionName} ${editbutton(dis.events.onToEdit,student)}</div></td>
                 </tr>
             `)}
         `;
