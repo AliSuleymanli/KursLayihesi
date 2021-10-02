@@ -1,6 +1,6 @@
-import {css} from 'lit';
+import { css } from 'lit';
 
-export const StudentsContainerCss=css`
+export const StudentsContainerCss = css`
     nav{
         background: dimgrey;
     }

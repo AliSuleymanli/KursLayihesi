@@ -12,20 +12,19 @@ import '../../../Elements/Navs/NavLink';
 
 @customElement("students-container")
 class StudentsContainer extends LitElement {
-    static styles = [BootstrapCssMin, StudentsContainerCss];
+    static styles = [BootstrapCssMin];
 
     @property() pathname: string = location.pathname;
 
     render() {
         return html`
-        <nav class="nav nav-justified nav-pills nav-tabs">
-            <a class="nav-link ${this.isActive('/students/studentlist')}" href="/students/studentlist"
-                @click="${this.changeLocationPathName}">Telebeler</a>
-            <a class="nav-link ${this.isActive('/students/newstudent')}" href="/students/newstudent"
-                @click="${this.changeLocationPathName}">Telebe Qeydiyyat</a>
-            <a class="nav-link ${this.isActive('/students/studentdept')}" href="/students/studentdept"
-                @click="${this.changeLocationPathName}">Telebe Borcu</a>
-        </nav>
+
+
+        <nav-bar>
+            <nav-link pathname="/students/studentlist">Telebeler</nav-link>
+            <nav-link pathname="/students/studentlist">Yeni Telebe</nav-link>
+            <nav-link pathname="/students/studentlist">Telebe Borcu</nav-link>
+        </nav-bar>
         
         <div class="container">
             <slot></slot>
