@@ -1,5 +1,8 @@
-import { autorun, makeAutoObservable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 class NavUiStore {
+
+    public pathname: string = location.pathname;
+
     constructor() {
         makeAutoObservable(this);
     }

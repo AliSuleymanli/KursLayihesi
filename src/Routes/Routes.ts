@@ -1,4 +1,5 @@
 import { Router } from "@vaadin/router";
+import { navUiStore } from "../Elements/Navs/NavUIStore";
 import "../kurs-app";
 import { store } from "../Store/Store";
 
@@ -9,27 +10,28 @@ const routes = [
     children: [
       {
         path: "students",
-        component:'students-container',
-        action:async ()=>{
+        component: 'students-container',
+        action: async () => {
           await import('../Components/Students/StudentsContainer/StudentsContainer');
         },
-        children:[
+        children: [
           {
-            path:"",
-            redirect:"students/studentlist"
+            path: "",
+            redirect: "students/studentlist"
           },
           {
-            path:"studentlist",
+            path: "studentlist",
             component: "student-list",
-            action:async ()=>{
+            action: async () => {
               await import('../Components/Students/StudentList/StudentList');
               await store.studentStore.LoadStudentList();
+              navUiStore.pathname = '/students/studentlist';
             }
           },
           {
-            path:"newstudent",
+            path: "newstudent",
             component: "new-student",
-            action:async ()=>{
+            action: async () => {
               await store.RegionStore.init();
               await store.StudentStausStore.init();
               await store.StudentSourceStore.init();
@@ -38,14 +40,14 @@ const routes = [
             }
           },
           {
-            path:"studentdept",
+            path: "studentdept",
             component: "student-depts",
-            action:async ()=>{
+            action: async () => {
               await import('../Components/Students/StudentDepts/StudentDepts');
             }
           },
         ]
-      },     
+      },
     ],
   },
 ];

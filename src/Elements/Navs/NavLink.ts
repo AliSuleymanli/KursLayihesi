@@ -1,12 +1,13 @@
-import { LitElement, html, css } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
-import { StudentsContainerCss } from "../../Components/Students/StudentsContainer/StudentsContainerCss";
+import { MobxLitElement } from "@adobe/lit-mobx";
+import { html, css } from "lit";
+import { customElement, property } from "lit/decorators.js";
 import { HTMLElementEventType } from "../../Types/Types";
 import { BootstrapCssMin } from "../BootstrapCss";
+import { navUiStore } from "./NavUIStore";
 
 
 @customElement("nav-link")
-class Navlink extends LitElement {
+class Navlink extends MobxLitElement {
     static styles = [BootstrapCssMin, css`
         a{
             color:white!important;
@@ -29,34 +30,25 @@ class Navlink extends LitElement {
     @property({ reflect: true }) class = '';
 
     render() {
+        let dis = this;
         return html`
-        <a class="${this.class} nav-link" href="${this.pathname}" @click="${this.changeLocationPathName}">
+        <a class="${this.isActive(dis.pathname)} nav-link" href="${this.pathname}" @click="${this.changeLocationPathName}">
             <slot></slot>
         </a>
         `;
     }
 
     isActive(href: string): string {
-        return href == this.pathname ? "active" : "";
+        return href == navUiStore.pathname ? "active" : "";
     }
 
     changeLocationPathName(e: HTMLElementEventType<HTMLAnchorElement>) {
         let target = e.currentTarget || e.target;
         let { origin, href } = target;
-        let pathname = href.substring(origin.length);
 
-        const event = new CustomEvent('link-clicked', {
-            detail: pathname,
-            bubbles: true
-        });
-        this.dispatchEvent(event);
+        navUiStore.pathname = href.substring(origin.length);;
+
     }
-
-    updated(props: any) {
-        console.log({ props })
-    }
-
-
 }
 
 export { Navlink }
