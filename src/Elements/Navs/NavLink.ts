@@ -1,5 +1,5 @@
 import { LitElement, html, css } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { StudentsContainerCss } from "../../Components/Students/StudentsContainer/StudentsContainerCss";
 import { HTMLElementEventType } from "../../Types/Types";
 import { BootstrapCssMin } from "../BootstrapCss";
@@ -11,21 +11,30 @@ class Navlink extends LitElement {
         a{
             color:white!important;
             text-decoration:none;
+            flex:1;
+        }
+
+        :host{
+            display:flex;
+            flex:1;
+            text-align:center;
+        }
+
+        a.active{
+            background:black!important;
         }
     `];
 
     @property() pathname: string = location.pathname;
-    @property({ reflect: true }) class = 'nav-link';
+    @property({ reflect: true }) class = '';
 
     render() {
         return html`
-        <a class="${this.isActive(this.pathname)}" href="${this.pathname}" @click="${this.changeLocationPathName}">
+        <a class="${this.class} nav-link" href="${this.pathname}" @click="${this.changeLocationPathName}">
             <slot></slot>
         </a>
         `;
     }
-
-
 
     isActive(href: string): string {
         return href == this.pathname ? "active" : "";
@@ -34,17 +43,21 @@ class Navlink extends LitElement {
     changeLocationPathName(e: HTMLElementEventType<HTMLAnchorElement>) {
         let target = e.currentTarget || e.target;
         let { origin, href } = target;
-        this.pathname = href.substring(origin.length);
-
+        let pathname = href.substring(origin.length);
 
         const event = new CustomEvent('link-clicked', {
-            detail: {
-                message: this.pathname
-            }
+            detail: pathname,
+            bubbles: true
         });
         this.dispatchEvent(event);
     }
 
+    updated(props: any) {
+        console.log({ props })
+    }
+
 
 }
+
+export { Navlink }
 

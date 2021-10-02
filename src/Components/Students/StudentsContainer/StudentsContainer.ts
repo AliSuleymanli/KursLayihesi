@@ -18,12 +18,10 @@ class StudentsContainer extends LitElement {
 
     render() {
         return html`
-
-
         <nav-bar>
             <nav-link pathname="/students/studentlist">Telebeler</nav-link>
-            <nav-link pathname="/students/studentlist">Yeni Telebe</nav-link>
-            <nav-link pathname="/students/studentlist">Telebe Borcu</nav-link>
+            <nav-link pathname="/students/newstudent">Yeni Telebe</nav-link>
+            <nav-link pathname="/students/studentdept">Telebe Borcu</nav-link>
         </nav-bar>
         
         <div class="container">
