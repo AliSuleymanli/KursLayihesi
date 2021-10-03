@@ -12,9 +12,6 @@ import '../../../Elements/Navs/NavLink';
 
 @customElement("students-container")
 class StudentsContainer extends LitElement {
-    static styles = [BootstrapCssMin];
-
-    @property() pathname: string = location.pathname;
 
     render() {
         return html`
@@ -28,15 +25,5 @@ class StudentsContainer extends LitElement {
             <slot></slot>
         </div>
         `;
-    }
-
-    isActive(href: string): string {
-        return href == this.pathname ? "active" : "";
-    }
-
-    changeLocationPathName(e: HTMLElementEventType<HTMLAnchorElement>) {
-        let target = e.currentTarget || e.target;
-        let { origin, href } = target;
-        this.pathname = href.substring(origin.length);
     }
 }

@@ -48,6 +48,18 @@ const routes = [
           },
         ]
       },
+      {
+        path: "teachers",
+        component: 'kurs-app'
+      },
+      {
+        path: "parents",
+        component: 'kurs-app'
+      },
+      {
+        path: "courses",
+        component: 'kurs-app'
+      }
     ],
   },
 ];

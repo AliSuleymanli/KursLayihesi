@@ -22,7 +22,7 @@ class Navlink extends MobxLitElement {
         }
 
         a.active{
-            background:black!important;
+            background: rgb(17, 17, 17)!important;
         }
     `];
 

@@ -7,7 +7,7 @@ import { FontAwesome } from "../../Elements/lit-fontawesome/fontawesome.js";
 
 @customElement("app-menu")
 class Menu extends LitElement {
-  static styles = [MenuCss,FontAwesome];
+  static styles = [MenuCss, FontAwesome];
 
   @property({ attribute: false })
   sidenav: string = "200px";
@@ -16,11 +16,13 @@ class Menu extends LitElement {
     return html`
       <link rel="stylesheet" href="../../src/lib/fontawesome-free-5.15.4-web/css/all.css">
 
+      <style></style>
+
       <div id="mySidenav" class="sidenav ${this.narrowedNav}" style="width:${this.sidenav}">
         <a href="${this.locationPath}" >
             ${this.OpenCloseIcon}
         </a>
-        <a href="/students" title="${this.getTitle("Telebeler")}">
+        <a href="/students/studentlist" title="${this.getTitle("Telebeler")}">
             <span><i class="fas fa-user-graduate"></i></span>
             <span>Telebeler</span>
         </a>
@@ -41,7 +43,6 @@ class Menu extends LitElement {
         </a>
       </div>
 
-      <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
       <div id="main" style="margin-left:${this.sidenav}">
         <slot></slot>
     </div>
@@ -56,25 +57,26 @@ class Menu extends LitElement {
     this.sidenav = "50px";
   }
 
-  get narrowedNav(){
-      return this.isSideNavWide?"":"mini";
+  get narrowedNav() {
+    return this.isSideNavWide ? "" : "mini";
   }
 
-  get isSideNavWide():boolean{
-      return this.sidenav=="200px";
+  get isSideNavWide(): boolean {
+    return this.sidenav == "200px";
   }
 
-  getTitle(title:string):string{
-     return this.isSideNavWide?"":title;
+  getTitle(title: string): string {
+    return this.isSideNavWide ? "" : title;
   }
 
-  get OpenCloseIcon(){
+  get OpenCloseIcon() {
     return this.isSideNavWide
-    ?html`<span @click="${this.closeNav}"><i class="fas fa-times"></i></span>`
-    :html`<span @click="${this.openNav}"><i class="fas fa-bars"></i></span>`;
+      ? html`<span @click="${this.closeNav}"><i class="fas fa-times"></i></span>`
+      : html`<span @click="${this.openNav}"><i class="fas fa-bars"></i></span>`;
   }
 
-  get locationPath():string{
+  get locationPath(): string {
     return location.pathname;
   }
+
 }

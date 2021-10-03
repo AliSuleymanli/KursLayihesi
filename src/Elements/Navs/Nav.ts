@@ -14,7 +14,7 @@ class NavBar extends MobxLitElement {
 
     `];
 
-    @property() pathname: string = location.pathname;
+
     @property({ reflect: true }) class = "nav nav-justified nav-pills nav-tabs";
 
     render() {
