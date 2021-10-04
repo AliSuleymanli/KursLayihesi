@@ -19,6 +19,7 @@ class Navlink extends MobxLitElement {
             display:flex;
             flex:1;
             text-align:center;
+            border-left:1px solid white;
         }
 
         a.active{
