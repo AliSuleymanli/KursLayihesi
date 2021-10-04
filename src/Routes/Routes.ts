@@ -23,9 +23,9 @@ const routes = [
             path: "studentlist",
             component: "student-list",
             action: async () => {
+              navUiStore.pathname = '/students/studentlist';
               await import('../Components/Students/StudentList/StudentList');
               await store.studentStore.LoadStudentList();
-              navUiStore.pathname = '/students/studentlist';
             }
           },
           {
@@ -50,15 +50,24 @@ const routes = [
       },
       {
         path: "teachers",
-        component: 'kurs-app'
+        component: 'kurs-app',
+        action: async () => {
+          navUiStore.pathname = '/teachers';
+        }
       },
       {
         path: "parents",
-        component: 'kurs-app'
+        component: 'kurs-app',
+        action: async () => {
+          navUiStore.pathname = '/parents';
+        }
       },
       {
         path: "courses",
-        component: 'kurs-app'
+        component: 'kurs-app',
+        action: async () => {
+          navUiStore.pathname = '/courses';
+        }
       }
     ],
   },

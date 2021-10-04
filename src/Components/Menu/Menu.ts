@@ -4,13 +4,17 @@ import { customElement, property } from "lit/decorators.js";
 import { MenuCss } from "./MenuCss";
 import "jquery";
 import { FontAwesome } from "../../Elements/lit-fontawesome/fontawesome.js";
+import { navUiStore } from "../../Elements/Navs/NavUIStore";
+import { MobxLitElement } from "@adobe/lit-mobx";
 
 @customElement("app-menu")
-class Menu extends LitElement {
+class Menu extends MobxLitElement {
   static styles = [MenuCss, FontAwesome];
 
   @property({ attribute: false })
   sidenav: string = "200px";
+
+
 
   render() {
     return html`
@@ -22,19 +26,19 @@ class Menu extends LitElement {
         <a href="${this.locationPath}" >
             ${this.OpenCloseIcon}
         </a>
-        <a href="/students/studentlist" title="${this.getTitle("Telebeler")}">
+        <a  href="/students/studentlist" title="${this.getTitle("Telebeler")}" class="${this.isActive(this.studentsHrefs)}">
             <span><i class="fas fa-user-graduate"></i></span>
             <span>Telebeler</span>
         </a>
-        <a href="/teachers" title="${this.getTitle("Muellimler")}">
+        <a href="/teachers" title="${this.getTitle("Muellimler")}" class="${this.isActive(["/teachers"])}">
             <span><i class="fas fa-user-tie"></i></span>
             <span>Muellimler</span>
         </a>
-        <a href="/parents" title="${this.getTitle("Valideynler")}">
+        <a href="/parents" title="${this.getTitle("Valideynler")}" class="${this.isActive(["/parents"])}">
             <span><i class="fas fa-hat-cowboy"></i></span>
             <span>Valideynler</span>
         </a>
-        <a href="/courses" title="${this.getTitle("Dersler")}">
+        <a href="/courses" title="${this.getTitle("Dersler")}" class="${this.isActive(["/courses"])}">
             <span><i class="fas fa-book"></i></span>
             <span>Dersler</span>
         </a>
@@ -77,6 +81,14 @@ class Menu extends LitElement {
 
   get locationPath(): string {
     return location.pathname;
+  }
+
+  isActive(hrefs:string[]){
+    return hrefs.includes(navUiStore.pathname) ?'active':'';
+  }
+
+  get studentsHrefs(){
+    return ["/students/studentlist","/students/newstudent","/students/studentdept"];
   }
 
 }
