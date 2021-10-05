@@ -1,6 +1,6 @@
 export const ApiEndpoints = {
     UpdateStudents: '/students/v2',
-    getStudents:'/students',
+    getStudents:'/students/find-partial',
     userValidate: '/users/validate',
     studentRegions:'/student-regions',
     studentSource:'/student-sources',

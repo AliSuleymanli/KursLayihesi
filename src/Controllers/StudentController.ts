@@ -20,8 +20,8 @@ class StudentController {
         store.studentStore.onStudentChangedOnServer(student);
     }
 
-    static async GetAllStudents() {
-        return await HttpGetStudents();
+    static async GetAllStudents(start:number=1,end:number=100) {
+        return await HttpGetStudents(start,end);
     }
 
     static async GetAllStatuses() {

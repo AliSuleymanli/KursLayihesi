@@ -12,8 +12,8 @@ async function HttpInsertNewStudent(requestModel: StudentRequestModel){
     return await HttpPost<StudentRequestModel, number>(requestModel, ApiEndpoints.UpdateStudents);
 }
 
-async function HttpGetStudents() {
-    return await HttpGet<StudentResponseModel[]>(ApiEndpoints.getStudents);
+async function HttpGetStudents(start:number,end:number) {
+    return await HttpPost<{}, StudentResponseModel[]>({}, `${ApiEndpoints.getStudents}/${start}/${end}`);
 }
 
 async function HttpGetStatuses() {
